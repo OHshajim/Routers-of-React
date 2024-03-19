@@ -9,26 +9,32 @@ import {
 } from "react-router-dom";
 import About from './components/About/About.jsx'
 import Contact from './components/Contact/Contact.jsx'
+import Users from './components/Users/Users.jsx'
 
 
 const router = createBrowserRouter([
   {
-    path : "/",
-    element : <Home></Home>,
-    children:[
+    path: "/",
+    element: <Home></Home>,
+    children: [
       {
-        path:"/about",
+        path: "/about",
         element: <About></About>
-    
+
       },
       {
-        path:"/contact",
+        path: "/contact",
         element: <Contact></Contact>
-    
-      }
+
+      },
+      {
+        path: "/users",
+        loader :()=> fetch('https://jsonplaceholder.typicode.com/users'),
+        element: <Users></Users>,
+      },
     ]
   },
-  
+
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
