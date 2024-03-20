@@ -1,12 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer"
 const Home = () => {
+    const navigation = useNavigation()
     return (
         <div className="h-screen space-y-14">
             <Header></Header>
-            <h1>This is home </h1>
-            <Outlet></Outlet>
+            {
+                navigation.state === "loading" ?
+                    <p>data loading...</p> :
+                    <Outlet></Outlet>
+            }
             <Footer></Footer>
         </div>
     );
